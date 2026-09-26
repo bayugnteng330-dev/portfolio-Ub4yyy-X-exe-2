@@ -1,26 +1,1685 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  background: #020711;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   SELECTION
+========================= */
+
+::selection {
+  background: rgba(37, 99, 235, 0.5);
+  color: white;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020711;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d4ed8;
+  border-radius: 999px;
+}
+
+
+/* =========================
+   STAR BACKGROUND
+========================= */
+
+.stars {
+  opacity: 0.9;
+
+  background-image:
+    radial-gradient(circle at 10% 20%, white 0.8px, transparent 1px),
+    radial-gradient(circle at 25% 70%, white 0.7px, transparent 1px),
+    radial-gradient(circle at 40% 35%, white 0.8px, transparent 1px),
+    radial-gradient(circle at 55% 15%, white 0.6px, transparent 1px),
+    radial-gradient(circle at 68% 50%, white 0.8px, transparent 1px),
+    radial-gradient(circle at 80% 25%, white 0.7px, transparent 1px),
+    radial-gradient(circle at 92% 65%, white 0.8px, transparent 1px),
+    radial-gradient(circle at 15% 85%, white 0.6px, transparent 1px),
+    radial-gradient(circle at 35% 90%, white 0.7px, transparent 1px),
+    radial-gradient(circle at 75% 85%, white 0.8px, transparent 1px),
+    radial-gradient(circle at 90% 10%, white 0.6px, transparent 1px);
+
+  background-size:
+    180px 180px,
+    220px 220px,
+    250px 250px,
+    190px 190px,
+    230px 230px,
+    200px 200px,
+    270px 270px,
+    210px 210px,
+    250px 250px,
+    190px 190px,
+    230px 230px;
+
+  animation: starsMove 30s linear infinite;
+}
+
+@keyframes starsMove {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-80px);
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .stars {
+    opacity: 0.7;
+  }
+
+}
+/* =====================================================
+   ANIMATED BORDER CARD
+===================================================== */
+
+.animated-border-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.95);
+}
+
+/* Garis cahaya yang bergerak */
+.animated-border-card::before {
+  content: "";
+  position: absolute;
+  inset: -150%;
+  z-index: -2;
+
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 70deg,
+    rgba(59, 130, 246, 0.05) 100deg,
+    rgba(96, 165, 250, 0.9) 120deg,
+    rgba(255, 255, 255, 0.95) 135deg,
+    rgba(59, 130, 246, 0.6) 150deg,
+    transparent 180deg,
+    transparent 360deg
+  );
+
+  animation: border-spin 5s linear infinite;
+}
+
+/* Menutup bagian tengah sehingga yang terlihat hanya garis */
+.animated-border-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: calc(1rem - 1px);
+  background: #0f172a;
+}
+
+@keyframes border-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================================
+   PROJECT CARD ANIMATED BORDER
+===================================================== */
+
+.animated-project-border {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #2563eb,
+    #60a5fa,
+    transparent
+  );
+
+  background-size: 300% 100%;
+
+  animation: projectBorder 4s linear infinite;
+
+  filter: blur(1px);
+}
+
+@keyframes projectBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* =========================================================
+   SPACE PORTFOLIO
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #01040b;
+}
+
+
+/* =========================================================
+   SPACE BACKGROUND
+========================================================= */
+
+.space-background {
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(20, 80, 180, 0.08),
+      transparent 35%
+    ),
+    #01040b;
+}
+
+
+/* =========================================================
+   NEBULA
+========================================================= */
+
+.nebula {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+}
+
+.nebula-blue-left {
+  left: -300px;
+  top: 5%;
+  background: #0645ff;
+  animation: nebulaFloat 10s ease-in-out infinite;
+}
+
+.nebula-blue-right {
+  right: -300px;
+  top: 35%;
+  background: #006eff;
+  animation: nebulaFloatReverse 12s ease-in-out infinite;
+}
+
+.space-glow {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  width: 700px;
+  height: 700px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(0, 75, 255, 0.05);
+  filter: blur(100px);
+}
+
+
+/* =========================================================
+   PLANET
+========================================================= */
+
+.planet {
+  position: absolute;
+  left: -330px;
+  top: 42%;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #315d9d 0%,
+      #10264b 30%,
+      #050c19 65%,
+      #000 100%
+    );
+
+  box-shadow:
+    inset -80px -50px 100px rgba(0, 0, 0, 0.9),
+    0 0 80px rgba(0, 100, 255, 0.25);
+
+  animation: planetFloat 12s ease-in-out infinite;
+}
+
+.planet-light {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 20%,
+      rgba(255, 255, 255, 0.18),
+      transparent 20%
+    );
+}
+
+.planet-small {
+  position: absolute;
+  right: 7%;
+  top: 8%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #3971ba,
+      #071329 70%
+    );
+
+  box-shadow:
+    0 0 35px rgba(0, 110, 255, 0.3);
+
+  animation: planetSmallFloat 8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   PLANET RING
+========================================================= */
+
+.planet-ring {
+  position: absolute;
+  right: -150px;
+  top: 30%;
+  width: 500px;
+  height: 130px;
+
+  border: 2px solid rgba(30, 120, 255, 0.25);
+  border-radius: 50%;
+
+  transform: rotate(-18deg);
+
+  box-shadow:
+    0 0 20px rgba(0, 100, 255, 0.15);
+
+  animation: ringRotate 14s linear infinite;
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.stars {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px),
+    radial-gradient(circle, rgba(80,160,255,0.8) 1px, transparent 1px);
+
+  background-size:
+    170px 170px,
+    250px 250px,
+    330px 330px;
+
+  background-position:
+    20px 30px,
+    100px 70px,
+    40px 150px;
+}
+
+.stars-one {
+  opacity: 0.35;
+  animation: starsMove 80s linear infinite;
+}
+
+.stars-two {
+  opacity: 0.25;
+  animation: starsMoveReverse 120s linear infinite;
+}
+
+.stars-three {
+  opacity: 0.2;
+  animation: starsPulse 5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.space-title {
+  text-shadow:
+    0 0 20px rgba(70, 140, 255, 0.25),
+    0 0 50px rgba(0, 90, 255, 0.12);
+}
+
+
+/* =========================================================
+   FLOATING NAVBAR
+========================================================= */
+
+.floating-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  padding: 8px;
+
+  border: 1px solid rgba(100, 160, 255, 0.2);
+  border-radius: 999px;
+
+  background: rgba(5, 12, 27, 0.75);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  box-shadow:
+    0 0 30px rgba(0, 80, 255, 0.08),
+    inset 0 0 20px rgba(255, 255, 255, 0.02);
+
+  transition: 0.3s ease;
+}
+
+.floating-navbar:hover {
+  border-color: rgba(40, 130, 255, 0.45);
+
+  box-shadow:
+    0 0 30px rgba(0, 90, 255, 0.2),
+    0 0 70px rgba(0, 80, 255, 0.08);
+}
+
+.nav-link {
+  position: relative;
+
+  padding: 12px 20px;
+
+  border-radius: 999px;
+
+  color: #94a3b8;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link-active {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(30, 100, 255, 0.3),
+      rgba(0, 80, 255, 0.12)
+    );
+
+  box-shadow:
+    0 0 20px rgba(0, 100, 255, 0.2),
+    inset 0 0 15px rgba(80, 150, 255, 0.05);
+}
+
+.nav-link-active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 25%;
+  right: 25%;
+  bottom: 3px;
+
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: #3b82f6;
+
+  box-shadow:
+    0 0 8px #3b82f6;
+}
+
+
+/* =========================================================
+   TAB
+========================================================= */
+
+.space-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  padding: 5px;
+
+  border: 1px solid rgba(100, 150, 255, 0.2);
+  border-radius: 20px;
+
+  background: rgba(5, 13, 30, 0.7);
+
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 0 40px rgba(0, 70, 255, 0.05);
+}
+
+.space-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  min-height: 76px;
+
+  border-radius: 16px;
+
+  color: #94a3b8;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  transition: all 0.35s ease;
+}
+
+.space-tab:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.space-tab-active {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(10, 95, 255, 0.28),
+      rgba(0, 55, 150, 0.18)
+    );
+
+  border: 1px solid rgba(30, 130, 255, 0.65);
+
+  box-shadow:
+    0 0 20px rgba(0, 100, 255, 0.3),
+    inset 0 0 25px rgba(0, 90, 255, 0.08);
+}
+
+.tab-icon {
+  color: #60a5fa;
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+.project-card {
+  position: relative;
+
+  padding: 14px;
+
+  border: 1px solid rgba(80, 130, 220, 0.2);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10, 30, 65, 0.72),
+      rgba(2, 9, 22, 0.9)
+    );
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3);
+
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.project-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(50, 140, 255, 0.08),
+      transparent 80%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+  pointer-events: none;
+}
+
+.project-card:hover {
+  border-color: rgba(30, 130, 255, 0.65);
+
+  box-shadow:
+    0 20px 60px rgba(0, 70, 255, 0.15),
+    0 0 30px rgba(0, 100, 255, 0.08);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   PROJECT IMAGE
+========================================================= */
+
+.project-image-wrapper {
+  position: relative;
+
+  height: 190px;
+
+  overflow: hidden;
+
+  border-radius: 15px;
+
+  background: #02050c;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.7s ease,
+    filter 0.7s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.08);
+
+  filter:
+    brightness(1.08)
+    saturate(1.1);
+}
+
+.project-image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.45),
+      transparent 60%
+    );
+}
+
+.project-number {
+  position: absolute;
+
+  left: 10px;
+  top: 10px;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 28px;
+
+  border: 1px solid rgba(80, 170, 255, 0.5);
+  border-radius: 8px;
+
+  background: rgba(0, 80, 255, 0.45);
+
+  color: white;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 15px rgba(0, 100, 255, 0.3);
+}
+
+
+/* =========================================================
+   TECH BADGES
+========================================================= */
+
+.tech-badge {
+  padding: 7px 11px;
+
+  border: 1px solid rgba(40, 130, 255, 0.2);
+  border-radius: 999px;
+
+  background: rgba(0, 80, 200, 0.12);
+
+  color: #93c5fd;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  border-color: rgba(60, 150, 255, 0.6);
+
+  background: rgba(0, 100, 255, 0.2);
+
+  color: white;
+
+  box-shadow:
+    0 0 12px rgba(0, 100, 255, 0.15);
+}
+
+
+/* =========================================================
+   PROJECT BUTTON
+========================================================= */
+
+.project-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  flex: 1;
+
+  min-height: 40px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition: all 0.3s ease;
+}
+
+.project-button-github {
+  border: 1px solid rgba(100, 150, 220, 0.25);
+
+  color: #cbd5e1;
+
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.project-button-github:hover {
+  border-color: rgba(100, 160, 255, 0.5);
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: white;
+}
+
+.project-button-demo {
+  background:
+    linear-gradient(
+      135deg,
+      #1478ff,
+      #2563eb
+    );
+
+  color: white;
+
+  box-shadow:
+    0 0 20px rgba(0, 100, 255, 0.2);
+}
+
+.project-button-demo:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 30px rgba(0, 120, 255, 0.4);
+}
+
+
+/* =========================================================
+   TECH STACK
+========================================================= */
+
+.tech-grid {
+  margin-top: 28px;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 16px;
+}
+
+.tech-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 170px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(70, 120, 210, 0.18);
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 27, 52, 0.8),
+      rgba(3, 9, 20, 0.9)
+    );
+
+  backdrop-filter: blur(20px);
+
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.tech-card:hover {
+  border-color: rgba(50, 140, 255, 0.65);
+
+  box-shadow:
+    0 15px 45px rgba(0, 70, 255, 0.15),
+    0 0 25px rgba(0, 100, 255, 0.08);
+}
+
+.tech-logo {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 75px;
+  height: 75px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  font-size: 25px;
+  font-weight: 900;
+
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.tech-card-glow {
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  background: rgba(0, 100, 255, 0.12);
+
+  filter: blur(30px);
+
+  transition: transform 0.5s ease;
+}
+
+.tech-card:hover .tech-card-glow {
+  transform: scale(2);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes starsMove {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-500px);
+  }
+}
+
+@keyframes starsMoveReverse {
+  from {
+    transform: translateY(-300px);
+  }
+
+  to {
+    transform: translateY(300px);
+  }
+}
+
+@keyframes starsPulse {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes nebulaFloat {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(40px, -30px);
+  }
+}
+
+@keyframes nebulaFloatReverse {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-40px, 30px);
+  }
+}
+
+@keyframes planetFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes planetSmallFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes ringRotate {
+  0% {
+    transform: rotate(-18deg) translateX(0);
+  }
+
+  50% {
+    transform: rotate(-15deg) translateX(-20px);
+  }
+
+  100% {
+    transform: rotate(-18deg) translateX(0);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (min-width: 640px) {
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .tech-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .tech-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+
+  .floating-navbar {
+    gap: 0;
+  }
+
+  .nav-link {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .space-title {
+    font-size: 52px;
+  }
+
+  .planet {
+    left: -400px;
+    width: 500px;
+    height: 500px;
+  }
+
+  .planet-small {
+    right: -30px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .planet-ring {
+    right: -250px;
+  }
+
+  .space-tabs {
+    border-radius: 16px;
+  }
+
+  .space-tab {
+    min-height: 65px;
+    font-size: 13px;
+  }
+
+  .project-image-wrapper {
+    height: 200px;
+  }
+}
+/* =========================================================
+   SPACE BACKGROUND
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #01030a;
+}
+
+
+/* =========================================================
+   NEBULA
+========================================================= */
+
+.space-nebula {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 9999px;
+  filter: blur(140px);
+  opacity: 0.18;
+}
+
+.space-nebula-blue {
+  background: #1d4ed8;
+}
+
+.space-nebula-cyan {
+  background: #0891b2;
+  opacity: 0.12;
+}
+
+.space-nebula-purple {
+  background: #4c1d95;
+  opacity: 0.13;
+}
+
+
+/* =========================================================
+   SPACE GRID
+========================================================= */
+
+.space-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(59, 130, 246, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(59, 130, 246, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 80px 80px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+}
+
+
+/* =========================================================
+   SHOOTING STAR
+========================================================= */
+
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(96, 165, 250, 0.9),
+    transparent
+  );
+
+  transform: rotate(-35deg);
+
+  opacity: 0;
+
+  animation: shooting-star 7s linear infinite;
+}
+
+.shooting-one {
+  top: 15%;
+  left: 5%;
+  animation-delay: 1s;
+}
+
+.shooting-two {
+  top: 45%;
+  right: 5%;
+  animation-delay: 4s;
+}
+
+.shooting-three {
+  top: 70%;
+  left: 40%;
+  animation-delay: 6s;
+}
+
+
+@keyframes shooting-star {
+  0% {
+    transform: translate(0, 0) rotate(-35deg);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  20% {
+    transform: translate(350px, 220px) rotate(-35deg);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.space-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.9rem 1rem;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.space-input::placeholder {
+  color: #4b5563;
+}
+
+.space-input:focus {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.04);
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.05),
+    0 0 25px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+  background: rgba(37, 99, 235, 0.35);
+  color: white;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #01030a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #172554;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+/* =========================================================
+   SPACE BACKGROUND
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #01030a;
+}
+
+
+/* =========================================================
+   GALAXY NEBULA
+========================================================= */
+
+.space-nebula {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  opacity: 0.28;
+  animation: nebulaFloat 12s ease-in-out infinite alternate;
+}
+
+.space-nebula-blue {
+  background:
+    radial-gradient(
+      circle,
+      rgba(37, 99, 235, 0.75) 0%,
+      rgba(30, 64, 175, 0.35) 35%,
+      rgba(0, 0, 0, 0) 70%
+    );
+}
+
+.space-nebula-cyan {
+  background:
+    radial-gradient(
+      circle,
+      rgba(6, 182, 212, 0.65) 0%,
+      rgba(37, 99, 235, 0.3) 35%,
+      rgba(0, 0, 0, 0) 70%
+    );
+}
+
+.space-nebula-purple {
+  background:
+    radial-gradient(
+      circle,
+      rgba(124, 58, 237, 0.7) 0%,
+      rgba(79, 70, 229, 0.3) 35%,
+      rgba(0, 0, 0, 0) 70%
+    );
+}
+
+@keyframes nebulaFloat {
+  0% {
+    transform: translate3d(-20px, -10px, 0) scale(0.95);
+  }
+
+  50% {
+    transform: translate3d(20px, 15px, 0) scale(1.05);
+  }
+
+  100% {
+    transform: translate3d(-10px, 25px, 0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   SPACE GRID / ATMOSPHERE
+========================================================= */
+
+.space-grid {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(37, 99, 235, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 20% 60%,
+      rgba(124, 58, 237, 0.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(6, 182, 212, 0.06),
+      transparent 30%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.space-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+    radial-gradient(circle, rgba(96,165,250,0.6) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+
+  background-size:
+    180px 180px,
+    260px 260px,
+    340px 340px;
+
+  background-position:
+    0 0,
+    60px 100px,
+    120px 40px;
+
+  opacity: 0.35;
+}
+
+
+/* =========================================================
+   SHOOTING STAR
+========================================================= */
+
+.shooting-star {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 6px white,
+    0 0 12px rgba(96, 165, 250, 0.9),
+    0 0 25px rgba(59, 130, 246, 0.8);
+
+  opacity: 0;
+
+  transform: rotate(-45deg);
+}
+
+
+/* TRAIL */
+
+.shooting-star::after {
+  content: "";
+
+  position: absolute;
+
+  width: 150px;
+  height: 2px;
+
+  right: 2px;
+  top: 1px;
+
+  transform-origin: right center;
+
+  background:
+    linear-gradient(
+      to left,
+      rgba(255,255,255,0.9),
+      rgba(96,165,250,0.6),
+      transparent
+    );
+
+  filter: blur(1px);
+}
+
+
+/* =========================================================
+   SHOOTING STAR 1
+========================================================= */
+
+.shooting-one {
+  top: 18%;
+  left: 10%;
+
+  animation: shootingStarOne 7s linear infinite;
+}
+
+
+/* =========================================================
+   SHOOTING STAR 2
+========================================================= */
+
+.shooting-two {
+  top: 38%;
+  left: 75%;
+
+  animation: shootingStarTwo 9s linear infinite;
+
+  animation-delay: 3s;
+}
+
+
+/* =========================================================
+   SHOOTING STAR 3
+========================================================= */
+
+.shooting-three {
+  top: 65%;
+  left: 45%;
+
+  animation: shootingStarThree 11s linear infinite;
+
+  animation-delay: 6s;
+}
+
+
+/* =========================================================
+   ANIMATION 1
+========================================================= */
+
+@keyframes shootingStarOne {
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-45deg);
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  18% {
+    opacity: 1;
+    transform: translate3d(500px, 500px, 0) rotate(-45deg);
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(500px, 500px, 0) rotate(-45deg);
+  }
+
+}
+
+
+/* =========================================================
+   ANIMATION 2
+========================================================= */
+
+@keyframes shootingStarTwo {
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-45deg);
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  22% {
+    opacity: 1;
+    transform: translate3d(-550px, 450px, 0) rotate(-45deg);
+  }
+
+  24% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-550px, 450px, 0) rotate(-45deg);
+  }
+
+}
+
+
+/* =========================================================
+   ANIMATION 3
+========================================================= */
+
+@keyframes shootingStarThree {
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-45deg);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 1;
+    transform: translate3d(600px, -400px, 0) rotate(-45deg);
+  }
+
+  27% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(600px, -400px, 0) rotate(-45deg);
+  }
+
+}
+
+
+/* =========================================================
+   EXTRA COSMIC GLOW
+========================================================= */
+
+main {
+  position: relative;
+  isolation: isolate;
+}
+
+main::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: -15;
+
+  background:
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(37, 99, 235, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 85% 30%,
+      rgba(124, 58, 237, 0.1),
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 50% 90%,
+      rgba(6, 182, 212, 0.08),
+      transparent 35%
+    );
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .space-nebula {
+    width: 400px;
+    height: 400px;
+    filter: blur(70px);
+    opacity: 0.22;
+  }
+
+  .shooting-star::after {
+    width: 100px;
+  }
+
+}
+/* =========================================================
+   PLANETS
+========================================================= */
+
+.space-planet {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  opacity: 0.65;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(96, 165, 250, 0.35),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      #101827 0%,
+      #050914 55%,
+      #000208 100%
+    );
+
+  box-shadow:
+    inset -30px -20px 60px rgba(0, 0, 0, 0.9),
+    0 0 50px rgba(37, 99, 235, 0.08);
+}
+
+
+/* PLANET KIRI */
+
+.space-planet-left {
+  width: 280px;
+  height: 280px;
+
+  left: -130px;
+  bottom: 8%;
+}
+
+
+/* PLANET KANAN */
+
+.space-planet-right {
+  width: 420px;
+  height: 420px;
+
+  right: -220px;
+  bottom: -100px;
+
+  box-shadow:
+    inset -50px -40px 100px rgba(0, 0, 0, 0.9),
+    0 0 100px rgba(37, 99, 235, 0.12);
+}
+.space-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 0.9rem 1rem;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.space-input::placeholder {
+  color: rgb(75, 85, 99);
+}
+
+.space-input:focus {
+  border-color: rgba(96, 165, 250, 0.4);
+  background: rgba(37, 99, 235, 0.05);
+  box-shadow: 0 0 25px rgba(37, 99, 235, 0.08);
 }
